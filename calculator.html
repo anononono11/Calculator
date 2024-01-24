@@ -1,0 +1,87 @@
+<head>
+    <link rel="stylesheet" href="js.css">
+   
+    <title>Conversion Calculator</title>
+</head>
+<body>
+    <header>
+        <h1>Conversion Calculator</h1>
+    </header>
+	
+	<ul>
+                <li><a href="main page.html">Home</a></li>
+                <li><a href="conversion.html">Conversion Process</a></li>
+                <li><a href="calculator.html">Conversion Calculator</a></li>
+    </ul>
+	
+	
+	<script>
+	function calculateConversion() {
+   
+    var inputValue = document.getElementById('inputValue').value.trim();
+
+    
+    if (!isValidNumber(inputValue)) {
+        alert("Please enter a valid number.");
+        return;
+    }
+
+    
+    var numericValue = parseFloat(inputValue);
+
+   
+    var conversionType = document.getElementById('conversionType').value;
+
+    
+    var result;
+    if (conversionType === 'celsiusToFahrenheit') {
+        result = (numericValue * 9/5) + 32;
+    } else if (conversionType === 'fahrenheitToCelsius') {
+        result = (numericValue - 32) * 5/9;
+    } else if (conversionType === 'celsiusToKelvin') {
+        result = numericValue + 273.15;
+    } else if (conversionType === 'kelvinToCelsius') {
+        result = numericValue - 273.15;
+    } else if (conversionType === 'fahrenheitToKelvin') {
+        result = (numericValue - 32) * 5/9 + 273.15;
+    } else if (conversionType === 'kelvinToFahrenheit') {
+        result = (numericValue - 273.15) * 9/5 + 32;
+    } else {
+        result = 'Invalid conversion type';
+    }
+
+    
+    document.getElementById('result').innerHTML = 'Result: ' + result.toFixed(2);
+}
+
+
+function isValidNumber(value) {
+    return !isNaN(value) && isFinite(value);
+}
+
+
+	</script>
+	
+    <section>
+        <p>This page allows you to perform the chosen conversion. Enter the values and use the calculator to get the result. Explore the interactive features of this page to enhance your conversion experience.</p>
+        <form id="conversionForm">
+            <label for="inputValue">Enter Value:</label>
+            <input type="text" id="inputValue" />
+            <label for="conversionType">Select Conversion Type:</label>
+            <select id="conversionType">
+                <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+                <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+                <option value="celsiusToKelvin">Celsius to Kelvin</option>
+                <option value="kelvinToCelsius">Kelvin to Celsius</option>
+                <option value="fahrenheitToKelvin">Fahrenheit to Kelvin</option>
+                <option value="kelvinToFahrenheit">Kelvin to Fahrenheit</option>
+            </select>
+            <button type="button" onclick="calculateConversion()">Calculate</button>
+            <p id="result"></p>
+        </form>
+    </section>
+	
+	
+    
+</body>
+</html>
